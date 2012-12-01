@@ -12,10 +12,18 @@ class GeoController < ApplicationController
 
     features = []
     truck.way_points.each do |way_point|
-      features << RGeo::GeoJSON::EntityFactory.instance.feature(way_point.latlon, way_point.id, :time => way_point.created_at.to_s)
+      f = RGeo::GeoJSON::EntityFactory.instance.feature(way_point.latlon, way_point.id, :time => way_point.created_at.to_s)
+      features << JSON.parse(RGeo::GeoJSON.encode(f).to_json)
     end
-     collection = RGeo::GeoJSON::EntityFactory.instance.feature_collection(features)
+     json = JSON.parse(features.to_json)
 
-    respond_with RGeo::GeoJSON.encode(collection)
+    output =
+      {
+        :id => truck.id,
+        :description => truck.callsign,
+        :geo => {:type => 'FeatureCollection', :features => json}
+      }
+
+    respond_with output
   end
 end
