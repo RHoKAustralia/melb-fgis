@@ -11,8 +11,10 @@ class EventsController < ApplicationController
 
   def create
 
-    @event = Event.find(params[:id])
-    respond_with @event
+    @event = Event.new(params[:event])
+    if @event.save
+      respond_with @event, status: :created, location: @event
+    end
 
   end
 
