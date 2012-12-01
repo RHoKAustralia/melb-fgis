@@ -6,5 +6,6 @@ class CreateTruckWayPoints < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :truck_way_points, :truck_id
   end
 end
