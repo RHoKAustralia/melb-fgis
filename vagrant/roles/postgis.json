@@ -1,5 +1,5 @@
 {
-    "name": "postgresql",
+    "name": "postgis",
     "chef_type": "role",
     "json_class": "Chef::Role",
     "default_attributes": {
@@ -7,9 +7,11 @@
             "password": {"postgres":"postgres"}
         }
     },
-    "description": "Install PostgreSQL ",
+    "description": "Install PostGIS",
     "run_list": [
+        "recipe[apt]",
         "recipe[postgresql::server]",
-        "recipe[postgresql::server_debian]"
+        "recipe[postgresql::server_debian]",
+        "recipe[postgis::default]"
     ]
 }

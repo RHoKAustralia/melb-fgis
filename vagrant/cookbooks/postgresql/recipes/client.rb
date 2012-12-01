@@ -18,6 +18,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+execute "apt-get-update-periodic" do
+  command "apt-get update"
+  ignore_failure true
+  only_if do
+    File.exists?('/var/lib/apt/periodic/update-success-stamp') &&
+    File.mtime('/var/lib/apt/periodic/update-success-stamp') < Time.now - 86400
+  end
+end
 
 pg_packages = case node['platform']
 when "ubuntu","debian"
