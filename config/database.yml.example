@@ -20,6 +20,7 @@ development:
   username: fgis_development
   password: <%= ENV['DEV_POSTGRES_PASSWORD'] %>
   host: localhost
+  template: base_postgis
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -47,6 +48,7 @@ test:
   username: fgis_test
   password: <%= ENV['DEV_POSTGRES_PASSWORD'] %>
   host: localhost
+  template: base_postgis
 
 production:
   adapter: postgresql
@@ -56,3 +58,4 @@ production:
   username: fgis
   password: <%= ENV['DEV_POSTGRES_PASSWORD'] %>
   host: localhost
+  template: base_postgis
