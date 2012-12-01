@@ -1,3 +1,11 @@
 // Place all the styles related to the simple controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$bg-color : #59CAE5;
+
+body {
+  background-color: $bg-color;
+}
+#map {
+  height: 300px;
+}
