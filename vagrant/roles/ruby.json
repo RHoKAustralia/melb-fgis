@@ -1,0 +1,12 @@
+{
+    "name": "ruby",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "default_attributes": {
+    },
+    "description": "Install Ruby 1.9.3",
+    "run_list": [
+        "recipe[apt]",
+        "recipe[ruby::default]"
+    ]
+}
