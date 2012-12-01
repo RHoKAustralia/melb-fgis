@@ -1,0 +1,4 @@
+RECIPES
+["gems", "init", "models", "setup"]
+PREFERENCES
+{:dev_webserver=>"unicorn", :prod_webserver=>"unicorn", :database=>"postgresql", :templates=>"erb", :email=>"none", :authentication=>"devise", :devise_modules=>"default", :authorization=>"cancan", :form_builder=>"simple_form"}
