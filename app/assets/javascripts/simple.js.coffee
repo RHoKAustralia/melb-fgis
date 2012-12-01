@@ -43,7 +43,41 @@ $ ->
       latitude: cachedLat
       longitude: cachedLong
 
-    cachedLat = cachedLat + Math.random() * 0.001
-    cachedLong = cachedLong + Math.random() * 0.001
+    if(Math.random() > 0.5)
+      cachedLat = cachedLat + Math.random() * 0.003 * -1
+    else
+      cachedLat = cachedLat + Math.random() * 0.003
+    if(Math.random() > 0.5)
+      cachedLong = cachedLong + Math.random() * 0.003 * -1
+    else
+      cachedLong = cachedLong + Math.random() * 0.003
 
+  data = {"type":"Feature", "properties":{"description":"Northern Front", "color":"red"; "date_created": "Sat Nov 20 2012 17:49:08 GMT+1100 (EST)"}, "geometry":{"type":"Polygon", "coordinates":[[[140.58984361589, -35.976560711861], [144.10546861589, -37.207029461861], [145.16015611589, -33.867185711861], [142.34765611589, -35.273435711861], [143.57812486589, -34.921873211861], [139.88671861589, -27.890623211861], [142.52343736589, -34.570310711861], [142.52343736589, -34.746091961861], [140.58984361589, -35.976560711861]]]}, "crs":{"type":"name", "properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}}}
+  
+  L.geoJson(data, {
+    style: (feature) ->
+      return {color: feature.properties.color};
+    onEachFeature: (feature, layer) ->
+      current_time = new Date().getTime()
+      feature_time = new Date(feature.properties.date_created).getTime()
+      time_diff_in_minutes = Math.ceil((current_time - feature_time)/1000/60)
+      time_diff_in_hours = Math.floor((current_time - feature_time)/1000/60/60)
+      time_diff_in_days = Math.floor((current_time - feature_time)/1000/60/60/24)
+      if time_diff_in_days > 0
+        time_diff = time_diff_in_days + "d"
+      else
+        time_diff = time_diff_in_hours + "h"
+        if time_diff_in_hours == 0
+          time_diff = time_diff_in_minutes + "m"
+      layer.bindPopup(feature.properties.description + "<br><span style=\"float: right; font-size: 0.8em;\">(" +  time_diff  + " ago)</span>");
+  }).addTo(map)
+  
   setInterval detectLocation, 1000
+  
+  $('ul.breadcrumb li.sub-link').click ->
+    selected_view = $(this).data "view"
+    current_view = $('ul.breadcrumb li.active').data "view"
+    $('ul.breadcrumb li.active').removeClass "active"
+    $(this).addClass "active"
+    $('div.hud .' + selected_view).toggle()
+    $('div.hud .' + current_view).toggle()

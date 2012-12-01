@@ -1,14 +1,30 @@
 // Place all the styles related to the simple controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$bg-color : #59CAE5;
-
-body {
-  background-color: $bg-color;
+.navbar-fixed-top {
+  margin-bottom: 0;
+}
+.main {
+  margin-top: 40px;
+}
+.breadcrumb {
+  padding-bottom: 12px;
+  li:hover {
+    cursor: pointer;
+  }
 }
 #map {
-  height: 300px;
+  height: 700px;
 }
-.container {
-  margin-top: 100px;
+.hud {
+  border-radius: 10px;
+  border: 3px solid black;
+  padding: 10px;
+  ul {
+    margin: 0;
+    li {
+      display: block;
+      text-decoration: none;
+    }
+  }
 }
