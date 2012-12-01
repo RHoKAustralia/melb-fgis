@@ -50,3 +50,5 @@ gem 'rgeo-geojson'
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
 end
+
+gem "websocket-rails"
