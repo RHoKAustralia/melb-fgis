@@ -3,35 +3,90 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body,html{
   height:85%;
+  font-weight: bold;
+  color: white;
 }
 
 .navbar-fixed-top {
   margin-bottom: 0;
+}
+.navbar-inner {
+  background: black;
+  color: white;
+}
+.navbar .brand {
+  display: none;
+}
+.navbar .nav > li > a {
+  color: white;
+  text-shadow: none;
+}
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  background: none;
+  color: red;
 }
 .main {
   margin-top: 40px;
   height:100%;
 }
 .breadcrumb {
-  padding-bottom: 12px;
-  li:hover {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 50px;
+  height: 40px;
+  background: black;
+  border-radius: 0;
+  padding: 0 20px;
+  li {
+    padding: 10px 15px 10px;
     cursor: pointer;
+    text-shadow: none;
+    &.active {
+      color: red;
+    }
   }
 }
 #map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   height: 100%;
+  width: 100%;
 }
 .hud {
+  position: absolute;
+  z-index: 1;
+  top: 125px;
+  bottom: 80px;
+  overflow: auto;
   border-radius: 10px;
-  border: 3px solid black;
+  background: black;
   padding: 10px;
-  height:100%;
+  width: 33%;
   ul {
     margin: 0;
     li {
       display: block;
       text-decoration: none;
     }
+  }
+}
+#status {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  background: black;
+  padding: 10px 35px;
+  em {
+    color: red;
+    font-style: normal;
   }
 }
 @mixin gradient($from, $to) {
