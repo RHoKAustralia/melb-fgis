@@ -5,6 +5,9 @@ Fgis::Application.routes.draw do
   devise_for :users
 
   resources :events
+  resources :trucks do
+    resources :way_points
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
