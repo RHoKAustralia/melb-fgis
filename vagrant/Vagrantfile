@@ -1,0 +1,26 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+    config.vm.define :trucka do |trucka|
+      trucka.vm.box = "trucka"
+      trucka.vm.box = "precise64"
+      trucka.vm.box_url = "http://files.vagrantup.com/precise64.box"
+      trucka.vm.provision :chef_solo do |chef|
+          chef.roles_path = "roles"
+          chef.add_role "postgresql"
+      end
+      trucka.vm.network :hostonly, "192.168.1.10"
+    end
+    
+    config.vm.define :truckb do |truckb|
+      truckb.vm.box = "truckb"
+      truckb.vm.box = "precise64"
+      truckb.vm.box_url = "http://files.vagrantup.com/precise64.box"
+      truckb.vm.provision :chef_solo do |chef|
+          chef.roles_path = "roles"
+          chef.add_role "postgresql"
+      end
+      truckb.vm.network :hostonly, "192.168.1.11"
+    end
+end
