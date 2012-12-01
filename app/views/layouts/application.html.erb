@@ -9,26 +9,17 @@
 <body>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container-fluid">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <a class="brand" href="#">FGIS</a>
-      <div class="nav-collapse collapse">
-      	<ul class="nav pull-right">
-      		<li class="show"><a href="#">Status (Live) <i class="icon-circle-arrow-up"></i></a></li>
-      		<li class="hidden"><a href="#">Status (Down) <i class="icon-circle-arrow-down"></i></a></li>
-    		</ul>
-        <ul class="nav">
-          <li class="active"><a href="#">Live Feed</a></li>
-          <li><a href="team">My Team</a></li>
-          <li><a href="analyzer">Map Analyzer</a></li>
-          <li><a href="recon">Recon</a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
+    <a class="brand" href="#">FGIS</a>
+  	<ul class="nav pull-right">
+  		<li class="show"><a href="#">Status (Live) <i class="icon-circle-arrow-up"></i></a></li>
+  		<li class="hidden"><a href="#">Status (Down) <i class="icon-circle-arrow-down"></i></a></li>
+		</ul>
+    <ul class="nav">
+      <li class="active"><a href="#">Live Feed</a></li>
+      <li><a href="team">My Team</a></li>
+      <li><a href="analyzer">Map Analyzer</a></li>
+      <li><a href="recon">Recon</a></li>
+    </ul>
   </div>
 </div>
 <%= yield %>
