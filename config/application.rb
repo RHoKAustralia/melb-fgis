@@ -8,7 +8,6 @@ require "active_resource/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
-
 require "active_record/connection_adapters/postgis_adapter/railtie"
 
 if defined?(Bundler)
