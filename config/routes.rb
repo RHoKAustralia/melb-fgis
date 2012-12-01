@@ -1,6 +1,6 @@
 Fgis::Application.routes.draw do
 
-  get "simple/show"
+  root :to => 'simple#show'
 
   devise_for :users
 
