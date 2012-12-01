@@ -17,4 +17,6 @@
 /*.iml
 /*.ipr
 /*.iws
+/.generators
+/.rakeTasks
 config/database.yml
