@@ -223,9 +223,7 @@ $ ->
               <p>#{v.description}</p>
             </div>"
 
-    message = $(html)
-    $(message).appendTo('div.messages')
-    $(message).data('point', v.point)
+    $('div.messages').append($(html).data('point', v.point))
 
   $('ul.breadcrumb li.sub-link').click ->
     selected_view = $(this).data "view"
