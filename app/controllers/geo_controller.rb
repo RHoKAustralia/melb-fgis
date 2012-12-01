@@ -16,6 +16,6 @@ class GeoController < ApplicationController
     end
      collection = RGeo::GeoJSON::EntityFactory.instance.feature_collection(features)
 
-    respond_with collection.to_json
+    respond_with RGeo::GeoJSON.encode(collection)
   end
 end
