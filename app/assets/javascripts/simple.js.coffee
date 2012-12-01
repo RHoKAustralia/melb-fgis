@@ -7,6 +7,42 @@
 # else
   # error 'Geolocation is not supported.'
 #   
+  # locations = []
+  # polyline = null
+# 
+  # addLocation = (coords) ->
+    # locations.push
+      # datetime: new Date
+      # coords: coords
+# 
+    # drawPolyline()
+# 
+  # drawPolyline = ->
+    # map.removeLayer(polyline) unless !polyline
+# 
+    # latlngs = locations.map (location) ->
+      # return new L.LatLng location.coords.latitude, location.coords.longitude
+# 
+    # polyline = L.polyline(latlngs, {color: 'red'}).addTo(map)
+# 
+  # cachedLat = -37.814053
+  # cachedLong = 144.963183
+# 
+  # detectLocation = ->
+    # addLocation 
+      # latitude: cachedLat
+      # longitude: cachedLong
+# 
+    # if(Math.random() > 0.5)
+      # cachedLat = cachedLat + Math.random() * 0.003 * -1
+    # else
+      # cachedLat = cachedLat + Math.random() * 0.003
+    # if(Math.random() > 0.5)
+      # cachedLong = cachedLong + Math.random() * 0.003 * -1
+    # else
+      # cachedLong = cachedLong + Math.random() * 0.003
+
+# setInterval detectLocation, 1000
 
 $ ->
   data = [
@@ -108,7 +144,7 @@ $ ->
       "point":{
         "type":"Feature",
         "properties":{
-          "type":"SECTOR"
+          "type":"YOU"
           "description":"Pacman",
           "color":"yellow";
           "date_created": "Sat Dec 01 2012 00:49:08 GMT+1100 (EST)"
@@ -150,84 +186,43 @@ $ ->
     }
   ]
   
-  map = L.map('map').setView([data[0].point.geometry.coordinates[0][0][1],data[0].point.geometry.coordinates[0][0][0]], 14)
-  L.tileLayer('http://{s}.tile.cloudmade.com/aeb94991e883413e8262bd55def34111/997/256/{z}/{x}/{y}.png', { attribution: 'Made with love at RHoK Melbourne, Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>', maxZoom: 18 }).addTo(map)
+  map = L.map('map').setView([-37.793566209439,144.94111608134], 14)
+  L.tileLayer('http://{s}.tile.cloudmade.com/aeb94991e883413e8262bd55def34111/997/256/{z}/{x}/{y}.png',{
+    attribution: 'Made with love at <a href="https://github.com/vertis/rhok-fgis/">RHoK Melbourne</a>, Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+    maxZoom: 18
+  }).addTo(map)
 
-  markerIcon = L.icon 
-    iconUrl: '/assets/marker-icon.png'
-    shadowUrl: '/assets/marker-shadow.png'
-
-  locations = []
-  polyline = null
-
-  addLocation = (coords) ->
-    locations.push
-      datetime: new Date
-      coords: coords
-
-    drawPolyline()
-
-  drawPolyline = ->
-    map.removeLayer(polyline) unless !polyline
-
-    latlngs = locations.map (location) ->
-      return new L.LatLng location.coords.latitude, location.coords.longitude
-
-    polyline = L.polyline(latlngs, {color: 'red'}).addTo(map)
-
-  cachedLat = -37.814053
-  cachedLong = 144.963183
-
-  detectLocation = ->
-    addLocation 
-      latitude: cachedLat
-      longitude: cachedLong
-
-    if(Math.random() > 0.5)
-      cachedLat = cachedLat + Math.random() * 0.003 * -1
+  $.each data, (i, v) ->
+    current_time = new Date().getTime()
+    feature_time = new Date(v.point.properties.date_created).getTime()
+    time_diff_in_minutes = Math.ceil((current_time - feature_time)/1000/60)
+    time_diff_in_hours = Math.floor((current_time - feature_time)/1000/60/60)
+    time_diff_in_days = Math.floor((current_time - feature_time)/1000/60/60/24)
+    if time_diff_in_days > 0
+      time_diff = time_diff_in_days + " days ago"
     else
-      cachedLat = cachedLat + Math.random() * 0.003
-    if(Math.random() > 0.5)
-      cachedLong = cachedLong + Math.random() * 0.003 * -1
-    else
-      cachedLong = cachedLong + Math.random() * 0.003
+      time_diff = time_diff_in_hours + " hours ago"
+      if time_diff_in_hours == 0
+        time_diff = time_diff_in_minutes + " minutes ago"
+    L.geoJson(v.point, {
+      pointToLayer: (feature, latlon) ->
+        markerIcon = L.icon 
+          iconUrl: '/assets/marker-icon.png'
+          shadowUrl: '/assets/marker-shadow.png'
+        L.marker(latlon, {icon: markerIcon}).addTo(map);
+      style: (feature) ->
+        return {color: feature.properties.color};
+      onEachFeature: (feature, layer) ->
+        layer.bindPopup feature.properties.description + "<br><span style=\"float: right; font-size: 0.8em;\">(" +  time_diff  + ")</span>"
+    }).addTo(map)
+    html = '<div class="message" data-type="' + v.point.properties.type + '">'
+    html = html + '<i class="icon-chevron-right pull-right" style="margin: 15px 10px;"></i>'
+    html = html + '<p class="pull-right">' + time_diff + '</p><p>' + v.title + '</p><p>' + v.description + '</p>'
+    html = html + '</div>'
+    message = $(html)
+    $(message).appendTo('div.messages')
+    $(message).data('point', v.point)
 
-  poi = data.filter (location) ->
-    return location.point.properties.type == "team"
-  
-  processData = (data) ->
-    $('div.messages').empty()
-    $.each data, (i, v) ->
-      current_time = new Date().getTime()
-      feature_time = new Date(v.point.properties.date_created).getTime()
-      time_diff_in_minutes = Math.ceil((current_time - feature_time)/1000/60)
-      time_diff_in_hours = Math.floor((current_time - feature_time)/1000/60/60)
-      time_diff_in_days = Math.floor((current_time - feature_time)/1000/60/60/24)
-      if time_diff_in_days > 0
-        time_diff = time_diff_in_days + " days ago"
-      else
-        time_diff = time_diff_in_hours + " hours ago"
-        if time_diff_in_hours == 0
-          time_diff = time_diff_in_minutes + " minutes ago"
-      L.geoJson(v.point, {
-        pointToLayer: (feature, latlon) ->
-          L.marker(latlon, {icon: markerIcon}).addTo(map);
-        style: (feature) ->
-          return {color: feature.properties.color};
-        onEachFeature: (feature, layer) ->
-          layer.bindPopup feature.properties.description + "<br><span style=\"float: right; font-size: 0.8em;\">(" +  time_diff  + ")</span>"
-      }).addTo(map)
-      html = '<div class="message">'
-      html = html + '<i class="icon-chevron-right pull-right" style="margin: 15px 10px;"></i>'
-      html = html + '<p class="pull-right">' + time_diff + '</p><p>' + v.title + '</p><p>' + v.description + '</p>'
-      html = html + '</div>'
-      $(html).data('point', v.point)
-      $(html).appendTo('div.messages')
-      
-  processData data
-  
-  setInterval detectLocation, 1000
-  
   $('ul.breadcrumb li.sub-link').click ->
     selected_view = $(this).data "view"
     current_view = $('ul.breadcrumb li.active').data "view"
@@ -235,16 +230,24 @@ $ ->
     $(this).addClass "active"
     $('div.hud .' + selected_view).toggle()
     $('div.hud .' + current_view).toggle()
+
+  $('button#updates_all').click ->
+    $('div.message').hide()
+    $('div.message').fadeIn('fast')
+
   $('button#updates_sector').click ->
-    poi = data.filter (location) ->
-      return location.point.properties.type == "SECTOR"
-    processData poi
+    $('div.message').hide()
+    $('div.message[data-type="SECTOR"]').fadeIn('fast')
+
   $('button#updates_team').click ->
-    console.log "Team Clicked"
+    $('div.message').hide()
+    $('div.message[data-type="TEAM"]').fadeIn('fast')
+
   $('button#updates_you').click ->
-    console.log "You Clicked"
-  
-  $('div.messages div.message').click ->
+    $('div.message').hide()
+    $('div.message[data-type="YOU"]').fadeIn('fast')
+
+  $('div.message').click ->
     console.log $(this).data('point')
     switch $(this).data('point').geometry.type
       when "Point" then map.panTo [$(this).data('point').geometry.coordinates[1], $(this).data('point').geometry.coordinates[0]]
