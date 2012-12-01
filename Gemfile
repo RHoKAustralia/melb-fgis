@@ -45,6 +45,7 @@ gem "rolify", ">= 3.2.0"
 gem "simple_form", ">= 2.0.4"
 
 gem 'activerecord-postgis-adapter'
+gem 'rgeo-geojson'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0"

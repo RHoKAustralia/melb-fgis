@@ -108,6 +108,8 @@ GEM
       activerecord (>= 3.0.3)
       arel (>= 2.0.6)
       rgeo (>= 0.3.10)
+    rgeo-geojson (0.2.3)
+      rgeo (>= 0.3.7)
     rolify (3.2.0)
     rspec-core (2.12.0)
     rspec-expectations (2.12.0)
@@ -171,6 +173,7 @@ DEPENDENCIES
   less-rails
   pg (>= 0.14.1)
   rails (= 3.2.9)
+  rgeo-geojson
   rolify (>= 3.2.0)
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
