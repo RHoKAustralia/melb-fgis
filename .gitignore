@@ -13,5 +13,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-.idea
+/.idea
+/*.iml
+/*.ipr
+/*.iws
+/.generators
+/.rakeTasks
 config/database.yml
