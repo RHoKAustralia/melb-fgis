@@ -192,7 +192,7 @@ $ ->
     maxZoom: 18
   }).addTo(map)
 
-  $.each data, (i, v) ->
+  data.forEach (v) ->
     current_time = new Date().getTime()
     feature_time = new Date(v.point.properties.date_created).getTime()
     time_diff_in_minutes = Math.ceil((current_time - feature_time)/1000/60)
@@ -213,12 +213,16 @@ $ ->
       style: (feature) ->
         return {color: feature.properties.color};
       onEachFeature: (feature, layer) ->
-        layer.bindPopup feature.properties.description + "<br><span style=\"float: right; font-size: 0.8em;\">(" +  time_diff  + ")</span>"
+        layer.bindPopup feature.properties.description + "<br><span style=\"float: right; font-size: 0.8em;\">(#{time_diff})</span>"
     }).addTo(map)
-    html = '<div class="message" data-type="' + v.point.properties.type + '">'
-    html = html + '<i class="icon-chevron-right pull-right" style="margin: 15px 10px;"></i>'
-    html = html + '<p class="pull-right">' + time_diff + '</p><p>' + v.title + '</p><p>' + v.description + '</p>'
-    html = html + '</div>'
+
+    html = "<div class=\"message\" data-type=\"#{v.point.properties.type}\">
+              <i class=\"icon-chevron-right pull-right\" style=\"margin: 15px 10px;\"></i>
+              <p class=\"pull-right\">#{time_diff}</p>
+                <p>#{v.title}</p>
+              <p>#{v.description}</p>
+            </div>"
+
     message = $(html)
     $(message).appendTo('div.messages')
     $(message).data('point', v.point)
