@@ -5,6 +5,7 @@ Fgis::Application.routes.draw do
   devise_for :users
 
   resources :geo
+  resources :geo_fire
   resources :events
   resources :trucks do
     resources :way_points
