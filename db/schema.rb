@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121201022926) do
+ActiveRecord::Schema.define(:version => 20121201035138) do
+
+  create_table "events", :force => true do |t|
+    t.string   "description"
+    t.spatial  "latlon",      :limit => {:srid=>4326, :type=>"point", :geographic=>true}
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
