@@ -9,12 +9,10 @@ body,html{
 
 .navbar-fixed-top {
   margin-bottom: 0;
-}
-.navbar-inner {
-  background: #1a1917;
-  color: white;
-  text-transform: uppercase;
-  .container-fluid {
+  .navbar-inner {
+    background: #1a1917;
+    color: white;
+    text-transform: uppercase;
     padding-left: 80px;
     padding-right: 80px;
   }
