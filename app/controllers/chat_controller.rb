@@ -3,8 +3,10 @@ class ChatController < WebsocketRails::BaseController
   attr_accessor :message_counter
 
   def initialize_session
+
     # perform application setup here
     @message_count = 0
+
   end
 
   def client_connected
@@ -16,20 +18,28 @@ class ChatController < WebsocketRails::BaseController
   end
 
   def new_message
+
     puts "Message from UID: #{client_id}\n"
     @message_counter += 1
     broadcast_message :new_message, message
+
   end
 
   def new_user
+
     puts "storing user in data store\n"
     data_store[:user] = message
     broadcast_user_list
+
+    logger.info "test"
+
   end
 
   def change_username
+
     data_store[:user] = message
     broadcast_user_list
+
   end
 
   def delete_user

@@ -1,5 +1,7 @@
 Fgis::Application.routes.draw do
 
+  get "socket/index"
+
   root :to => 'simple#show'
 
   devise_for :users
