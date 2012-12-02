@@ -42,30 +42,33 @@ GET /features/fire
 		"id": "0",
 		"description": "Main fire"
 		"updated_at": "2012-12-01T06:59:20Z"
-		"geo": [
-			{
-				"type": "Feature",
-				"properties": {
-					"description": "origin"
+		"geo": {
+			"type": "FeatureCollection",
+			"features": [
+				{
+					"type": "Feature",
+					"properties": {
+						"description": "origin"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [
+							15875934.464566292,
+							-4372289.554702327
+						]
+					}
 				},
-				"geometry": {
-					"type": "Point",
-					"coordinates": [
-						15875934.464566292,
-						-4372289.554702327
-					]
+				{
+					"type": "Feature",
+					"properties": {
+						"description": "front"
+					},
+					"geometry": {
+						...
+					}
 				}
-			},
-			{
-				"type": "Feature",
-				"properties": {
-					"description": "front"
-				},
-				"geometry": {
-					...
-				}
-			}
-		]
+			]
+		}
 	},
 	{
 		...
@@ -94,30 +97,33 @@ GET /features
 POST /features/fire
 {
 	"description": "Secondary fire"
-	"geo": [
-		{
-			"type": "Feature",
-			"properties": {
-				"description": "origin"
+	"geo": {
+		"type": "FeatureCollection",
+		"features": [
+			{
+				"type": "Feature",
+				"properties": {
+					"description": "origin"
+				},
+				"geometry": {
+					"type": "Point",
+					"coordinates": [
+						77.99,
+						-99.77
+					]
+				}
 			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					77.99,
-					-99.77
-				]
+			{
+				"type": "Feature",
+				"properties": {
+					"description": "front"
+				},
+				"geometry": {
+					...
+				}
 			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"description": "front"
-			},
-			"geometry": {
-				...
-			}
-		}
-	]
+		]
+	}
 }
 201 Created
 {
