@@ -253,7 +253,7 @@ $ ->
               <p>#{v.description}</p>
             </div>"
 
-    $('div.messages').append($(html).data('geo', v.geo.features[0]))
+    $('div.messages').append($(html).data('geo', v.geo))
 
   $('ul.breadcrumb li.sub-link').click ->
     selected_view = $(this).data "view"

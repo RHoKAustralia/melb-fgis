@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(:version => 20121201230655) do
     t.datetime "updated_at",                                                             :null => false
   end
 
+  add_index "truck_way_points", ["truck_id"], :name => "index_truck_way_points_on_truck_id"
+
   create_table "trucks", :force => true do |t|
     t.string "callsign"
   end
