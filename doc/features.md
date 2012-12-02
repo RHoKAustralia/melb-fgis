@@ -35,45 +35,45 @@ Query Params:
 
 e.g.
 
-GET /features/fire
-200 OK
-[
-	{
-		"id": "0",
-		"description": "Main fire"
-		"updated_at": "2012-12-01T06:59:20Z"
-		"geo": {
-			"type": "FeatureCollection",
-			"features": [
-				{
-					"type": "Feature",
-					"properties": {
-						"description": "origin"
+	GET /features/fire
+	200 OK
+	[
+		{
+			"id": "0",
+			"description": "Main fire"
+			"updated_at": "2012-12-01T06:59:20Z"
+			"geo": {
+				"type": "FeatureCollection",
+				"features": [
+					{
+						"type": "Feature",
+						"properties": {
+							"description": "origin"
+						},
+						"geometry": {
+							"type": "Point",
+							"coordinates": [
+								15875934.464566292,
+								-4372289.554702327
+							]
+						}
 					},
-					"geometry": {
-						"type": "Point",
-						"coordinates": [
-							15875934.464566292,
-							-4372289.554702327
-						]
+					{
+						"type": "Feature",
+						"properties": {
+							"description": "front"
+						},
+						"geometry": {
+							...
+						}
 					}
-				},
-				{
-					"type": "Feature",
-					"properties": {
-						"description": "front"
-					},
-					"geometry": {
-						...
-					}
-				}
-			]
+				]
+			}
+			},
+		{
+			...
 		}
-	},
-	{
-		...
-	}
-]
+	]
 
 GET /features
 200 OK
