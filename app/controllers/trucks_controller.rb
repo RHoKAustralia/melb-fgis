@@ -14,6 +14,8 @@ class TrucksController < ApplicationController
     if @truck.save
       respond_with @truck.to_json(:include => [:way_points]), status: :created, location: @truck
     end
+
+    WebsocketRails[:truck_channel].trigger(:truck_event, @truck)
   end
 
   def show
