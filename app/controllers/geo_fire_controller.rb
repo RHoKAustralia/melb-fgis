@@ -8,18 +8,6 @@ class GeoFireController < ApplicationController
   end
 
   def show
-    fire = Fire.find(params[:id])
-
-    f = RGeo::GeoJSON::EntityFactory.instance.feature(fire.region, fire.id, :time => fire.created_at.to_s)
-    json = JSON.parse(RGeo::GeoJSON.encode(f).to_json)
-
-    output =
-      {
-        :id => fire.id,
-        :description => fire.name,
-        :geo => json
-      }
-
-    respond_with output
+    respond_with Fire.find(params[:id]).to_geo_json
   end
 end
