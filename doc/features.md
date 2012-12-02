@@ -22,9 +22,9 @@ Events can be websocketed - still whole JSON entities.
 ================================
 
 Endpoints:
-	/features 					- GET
+	/features           - GET
 	/features/{feature} - GET, POST, PUT
-	/events 						- GET
+	/events             - GET
 
 Query Params:
   lat, lon, range
@@ -35,7 +35,8 @@ Query Params:
 
 e.g.
 
-	GET /features/fire
+GET /features/fire
+
 	200 OK
 	[
 		{
@@ -76,87 +77,91 @@ e.g.
 	]
 
 GET /features
-200 OK
-{
-	"fire": [
-		{
-			"id": "0",
-			...
-		},
-		{
-			"id": "3",
-			...
-		}
-	],
-	"weather": [
-		...
-	],
-	"hotspot": ...
-}
 
-POST /features/fire
-{
-	"description": "Secondary fire"
-	"geo": {
-		"type": "FeatureCollection",
-		"features": [
+	200 OK
+	{
+		"fire": [
 			{
-				"type": "Feature",
-				"properties": {
-					"description": "origin"
-				},
-				"geometry": {
-					"type": "Point",
-					"coordinates": [
-						77.99,
-						-99.77
-					]
-				}
+				"id": "0",
+				...
 			},
 			{
-				"type": "Feature",
-				"properties": {
-					"description": "front"
-				},
-				"geometry": {
-					...
-				}
+				"id": "3",
+				...
 			}
-		]
+		],
+		"weather": [
+			...
+		],
+		"hotspot": ...
 	}
-}
-201 Created
-{
-	"id": "7"
-}
+
+POST /features/fire
+
+	{
+		"description": "Secondary fire"
+		"geo": {
+			"type": "FeatureCollection",
+			"features": [
+				{
+					"type": "Feature",
+					"properties": {
+						"description": "origin"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [
+							77.99,
+							-99.77
+						]
+					}
+				},
+				{
+					"type": "Feature",
+					"properties": {
+						"description": "front"
+					},
+					"geometry": {
+						...
+					}
+				}
+			]
+		}
+	}
+	201 Created
+	{
+		"id": "7"
+	}
 
 PUT /features/fire/7
-{
-	...
-}
-200 OK
+
+	{
+		...
+	}
+	200 OK
 
 GET /events
-200 OK
-[
-	{
-		"id": "86",
-		"type": "fire",
-		"entity": {
-			"id": "35",
-			"description": "Main fire",
-			...
-		}
-	},
-	{
-		"id": "87",
-		"type": "hotspot",
-		"entity": {
-			...
-		}
-	},
-	...
-]
+
+	200 OK
+	[
+		{
+			"id": "86",
+			"type": "fire",
+			"entity": {
+				"id": "35",
+				"description": "Main fire",
+				...
+			}
+		},
+		{
+			"id": "87",
+			"type": "hotspot",
+			"entity": {
+				...
+			}
+		},
+		...
+	]
 
 ================================
 
