@@ -23,4 +23,7 @@ class Fire < ActiveRecord::Base
     output.to_json
   end
 
+  def after_save(record)
+    WebsocketRails[:fire_channel].trigger(:fire_event, record.to_geo_json)
+  end
 end
