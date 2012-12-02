@@ -17,4 +17,14 @@ var channel = dispatcher.subscribe('truck_channel');
 // bind to a channel event
 channel.bind('truck_event', function(data) {
     console.log('truck_channel event received: ' + JSON.stringify(data));
+    Window.alert('truck_channel event received: ' + JSON.stringify(data));
+});
+
+
+var channel2 = dispatcher.subscribe('fire_channel');
+
+// bind to a channel event
+channel2.bind('fire_event', function(data) {
+    console.log('fire_channel event received: ' + JSON.stringify(data));
+    Window.alert('fire_channel event received: ' + JSON.stringify(data));
 });
