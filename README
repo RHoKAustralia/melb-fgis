@@ -1,4 +1,42 @@
-RECIPES
-["gems", "init", "models", "setup"]
-PREFERENCES
-{:dev_webserver=>"unicorn", :prod_webserver=>"unicorn", :database=>"postgresql", :templates=>"erb", :email=>"none", :authentication=>"devise", :devise_modules=>"default", :authorization=>"cancan", :form_builder=>"simple_form"}
+Website/App store links: 
+https://github.com/downloads/rhok-melbourne/fgis/FirePres.pptx
+https://github.com/downloads/rhok-melbourne/fgis/fire-geo-information-mockup.jpg
+
+Summary: 
+Julian Smith (a Bushfire truck crew leader) introduced us to the problems they face getting accurate information while fighting a fire.
+
+While rich information about the area and current state is available, the fire trucks themselves are reduced to radios and paper maps (sometimes not even those).
+
+Working with the customer we determined that the fire fighters almost always work in close proximity to their trucks, and that the trucks are currently undergoing an upgrade to provide a mesh network for the purposes of providing sensor data back to the control rooms.
+
+This information is not readily available to the fire crews, but with the help of a (tiny) local server and the fire fighters own personal devices rich information about Victoria (VicMaps) could be joined to realtime information from the trucks, and user/crew entered data about points of interest.
+
+Together with a team of 8 people we developed a prototype offline "cloud" to help provide information and tracking during the fire. 
+
+The team is committed to getting the application (and supporting hardware) to a trial within several firetrucks.
+
+Why we are working on this problem: 
+Better information to the fire crews will help save lives and properties.
+
+What we accomplished during the event: 
+Developed a prototype, and formed a team that will see the prototype through to trial within a small group of firetrucks.
+
+Progress made since the event: 
+Organised future work
+
+Traction: 
+The team is committed to seeing the solution through to a trial within a group of firetrucks, and is working with Julian to make this happen.
+
+Next steps: 
+Finish development of a beta & trial in a small number of trucks
+
+Code Repository: https://github.com/rhok-melbourne/fgis
+Category: Application
+Status: Prototype
+Programming languages: Ruby, Coffeescript (javascript)
+Frameworks: Ruby on Rails
+End user environments: Web & Mobile(Responsive)
+Server requirements: Mini server within each truck
+What RHoK event this project is being submitted for: RHoK Global December 2012
+Images and Video:
+Issue Tracker: https://trello.com/board/bushfire-geo-information-system/50b95e4246a43dbf6100acb6
