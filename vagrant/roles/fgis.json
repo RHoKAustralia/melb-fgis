@@ -1,0 +1,12 @@
+{
+    "name": "fgis",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "default_attributes": {
+    },
+    "description": "Install FGiS",
+    "run_list": [
+        "recipe[apt]",
+        "recipe[fgis::default]"
+    ]
+}

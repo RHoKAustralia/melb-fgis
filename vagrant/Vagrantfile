@@ -8,8 +8,9 @@ Vagrant::Config.run do |config|
       trucka.vm.box_url = "http://files.vagrantup.com/precise64.box"
       trucka.vm.provision :chef_solo do |chef|
           chef.roles_path = "roles"
-          #chef.add_role "postgis"
-          chef.add_role "ruby"
+          # chef.add_role "postgis"
+          # chef.add_role "ruby"
+          chef.add_role "fgis"
       end
       trucka.vm.network :hostonly, "192.168.1.10"
     end
@@ -21,7 +22,8 @@ Vagrant::Config.run do |config|
       truckb.vm.provision :chef_solo do |chef|
           chef.roles_path = "roles"
           #chef.add_role "postgis"
-          chef.add_role "ruby"
+          #chef.add_role "ruby"
+          chef.add_role "fgis"
       end
       truckb.vm.network :hostonly, "192.168.1.11"
     end

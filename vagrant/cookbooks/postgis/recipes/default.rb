@@ -16,6 +16,8 @@ psql -c "alter table spatial_ref_sys owner to gisgroup;" template_postgis
 
 psql -c "create user fgis with password 'password';"
 psql -c "grant gisgroup to fgis;"
-createdb -T template_postgis -O fgis fgis
+createdb -T template_postgis -O fgis fgis_development
+createdb -T template_postgis -O fgis fgis_test
+createdb -T template_postgis -O fgis fgis_production
   EOH
 end
