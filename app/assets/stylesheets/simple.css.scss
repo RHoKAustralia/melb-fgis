@@ -3,35 +3,116 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body,html{
   height:85%;
+  font-weight: bold;
+  color: white;
 }
 
 .navbar-fixed-top {
   margin-bottom: 0;
+  .navbar-inner {
+    background: #1a1917;
+    color: white;
+    text-transform: uppercase;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+.navbar .brand {
+  display: none;
+}
+.navbar .nav > li > a {
+  color: white;
+  text-shadow: none;
+  padding-right: 0;
+  &:after {
+    content: "/";
+    padding-left: 15px;
+  }
+  &.connection-status {
+    &.connected {
+      color: #9add5a;
+    }
+    &.disconnected {
+      color: #ef4343;
+    }
+    &:after {
+      content: "";
+      padding-left: 0;
+    }
+  }
+}
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  background: none;
+  color: #ef4343;
 }
 .main {
   margin-top: 40px;
   height:100%;
 }
 .breadcrumb {
-  padding-bottom: 12px;
-  li:hover {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 50px;
+  height: 31px;
+  background: #1a1917;
+  border-radius: 0;
+  padding: 0 100px;
+  li {
+    padding: 5px 0 5px 15px;
     cursor: pointer;
+    text-shadow: none;
+    text-transform: uppercase;
+    &:after {
+      content: "/";
+      margin-left: 15px;
+    }
+    &.active {
+      color: #ef4343;
+    }
   }
 }
 #map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   height: 100%;
+  width: 100%;
 }
 .hud {
+  position: absolute;
+  z-index: 1;
+  top: 106px;
+  bottom: 77px;
+  left: 25px;
+  overflow: auto;
   border-radius: 10px;
-  border: 3px solid black;
+  background: #1a1917;
   padding: 10px;
-  height:100%;
+  width: 33%;
   ul {
     margin: 0;
     li {
       display: block;
       text-decoration: none;
     }
+  }
+}
+#status {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  background: #1a1917;
+  padding: 6px 95px;
+  em {
+    color: #ef4343;
+    font-style: normal;
   }
 }
 @mixin gradient($from, $to) {
@@ -44,14 +125,18 @@ body,html{
 
 .message {
   border: 1px solid lightgrey;
-  @include gradient(#ffffff, #e5e5e5);
+  @include gradient(#1a1917, #1a1917);
 margin-bottom: 2px;
 padding: 10px;
   &:hover {
-    @include gradient(#e5e5e5, #ffffff);
+    @include gradient(#1a1917, #1a1917);
     cursor: pointer;
   }
   p {
     margin: 0;
   }
+}
+
+.leaflet-control-zoom {
+  display: none;
 }
