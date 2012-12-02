@@ -4,14 +4,14 @@
 body,html{
   height:85%;
   font-weight: bold;
-  color: white;
+  color: #e8e2d2;
 }
 
 .navbar-fixed-top {
   margin-bottom: 0;
   .navbar-inner {
     background: #1a1917;
-    color: white;
+    color: #e8e2d2;
     text-transform: uppercase;
     padding-left: 80px;
     padding-right: 80px;
@@ -21,7 +21,7 @@ body,html{
   display: none;
 }
 .navbar .nav > li > a {
-  color: white;
+  color: #e8e2d2;
   text-shadow: none;
   padding-right: 0;
   &:after {
@@ -42,7 +42,7 @@ body,html{
   }
 }
 .navbar .nav > li > a {
-  padding: 16px 15px;
+  padding: 16px 0 16px 15px;
 }
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
@@ -97,7 +97,50 @@ body,html{
   border-radius: 10px;
   background: #1a1917;
   padding: 30px;
-  width: 320px;
+  width: 270px;
+  em {
+    font-style: normal;
+    font-size: 58px;
+    line-height: 38px;
+  }
+  .datetime {
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+    .time {
+      float: left;
+    }
+    .date {
+      float: right;
+      font-size: 24px;
+      line-height: 26px;
+      position: relative;
+      top: -6px;
+      text-align: right;
+    }
+    .arbitrary-tiny-divider {
+      height: 4px;
+      width: 60px;
+      background: #e8e2d2;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+  .details {
+    text-align: right;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 4px solid #e8e2d2;
+    .team {
+      font-size: 32px;
+      line-height: 46px;
+    }
+    .member {
+      font-size: 19px;
+      line-height: 19px;
+    }
+  }
   ul {
     margin: 0;
     li {
@@ -141,4 +184,8 @@ padding: 10px 0;
 
 .leaflet-control-zoom {
   display: none;
+}
+
+.leaflet-popup-content {
+  color: black;
 }
