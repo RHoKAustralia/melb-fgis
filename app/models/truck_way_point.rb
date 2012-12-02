@@ -8,4 +8,8 @@ class TruckWayPoint < ActiveRecord::Base
   attr_accessible :latlon, :truck_id
 
   belongs_to :truck
+
+  def after_save(record)
+    record.truck.notify_listeners
+  end
 end

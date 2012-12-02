@@ -20,7 +20,11 @@ class Truck < ActiveRecord::Base
     output.to_json
   end
 
+  def notify_listeners
+    WebsocketRails[:truck_channel].trigger(:truck_event, self.to_geo_json)
+  end
+
   def after_save(record)
-    WebsocketRails[:truck_channel].trigger(:truck_event, record.to_geo_json)
+    record.notify_listeners
   end
 end
