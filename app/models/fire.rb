@@ -18,7 +18,7 @@ class Fire < ActiveRecord::Base
       {
         :id => self.id,
         :description => self.name,
-        :geo => json
+        :geo => {:type => 'FeatureCollection', :features => json}
       }
     output.to_json
   end
