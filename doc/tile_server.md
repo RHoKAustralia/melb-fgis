@@ -11,7 +11,7 @@
 sudo apt-get install -y nodejs npm
 git clone https://github.com/chelm/mbtiles-server
 cd mbtiles-server
-wget http://cycletour.org:5002/export/download/fgis_z13.mbtiles
+wget http://cycletour.org:5004/fgis_z13.mbtiles
 
 # Run MBTiles-server (default port 3000)
 node server.js fgis_z13.mbtiles
