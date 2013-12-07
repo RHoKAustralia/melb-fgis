@@ -7,19 +7,26 @@
 
 #### Deployment in Vagrant ####
 ```
-# Install MBTiles-server
+# For fresh install . . .
+sudo apt-get install -y git-core python-software-properties software-properties-common
+sudo apt-add-repository ppa:chris-lea/node.js-legacy
+sudo apt-get update
 sudo apt-get install -y nodejs npm
+
+npm install -s sphericalmercator splite3
+npm install
+
+# Install MBTiles-server
 git clone https://github.com/chelm/mbtiles-server
 cd mbtiles-server
 wget http://cycletour.org:5004/fgis_z13.mbtiles
 
 # Run MBTiles-server (default port 3000)
 node server.js fgis_z13.mbtiles
-
 ```
-#### Using tiles in leaflet ####
 
- Add a layer like this:
+#### Using tiles in leaflet ####
+Add a layer like this:
 ```
         L.tileLayer('http://localhost:3000/{z}/{x}/{y}.png', {
            maxZoom: 13,
